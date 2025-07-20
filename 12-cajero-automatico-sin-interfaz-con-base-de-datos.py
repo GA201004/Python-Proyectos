@@ -1,5 +1,5 @@
-# 04-cajero-automatico-sencillo.py
-# Este es un programa sencillo de cajero automático que permite realizar operaciones básicas como retiro, depósito,
+# 12-cajero-automatico-sin-interfaz-con-base-de-datos.py
+# Este es un programa de cajero automático que permite realizar operaciones básicas como retiro, depósito,
 # consulta de saldo y cambio de clave. El programa solicita al usuario que elija una opción y realiza la operación correspondiente.
 # El programa continuará ejecutándose hasta que el usuario decida salir.
 # Autor: [Gabriel Ochoa]
@@ -306,14 +306,21 @@ while True:
     print("Opcion 5= Crear Cuenta")
     print("Opcion 6= Eliminar Cuenta")
     print("Opcion 7= Salir")
-    op = int(input("Introduzca su opcion: "))
+    try:
+        opcion_str = input("Introduzca su opción: ")
+        op = int(opcion_str) # Intenta convertir la entrada a un entero
+    except ValueError:
+        # Si la conversión falla (no es un número), muestra un mensaje y el bucle continúa
+        print("\n--- ¡Entrada inválida! Por favor, ingrese un NÚMERO de opción válido (1-7). ---")
+        print("------------------------------------------------")
+        continue # Esto hace que el bucle salte al principio de nuevo
     if op == 1:
         retiro()
         print("------------------------------------------------")
+
     elif op ==2:
        deposito ()
        print("------------------------------------------------")
-
 
     elif op == 3:
       consulta()
@@ -322,12 +329,15 @@ while True:
     elif op == 4:
            cambio_de_clave()
            print("------------------------------------------------")
+  
     elif op == 5:
             crear_cuenta()
             print("------------------------------------------------")
+ 
     elif op ==6:
         eliminar_cuenta()
         print("------------------------------------------------")
+  
     elif op ==7:
         print("Saliendo del sistema...")
         break
